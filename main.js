@@ -89,6 +89,15 @@ posts.forEach ((obj) => {
     createPost(id, content, media, name, image, likes, created)
 })
 
+const likeButtons = document.querySelectorAll ("a.like-button")
+
+for (let i = 0 ; i < likeButtons.length ; i++) {
+    const singleLikeButton = likeButtons[i]
+
+    singleLikeButton.addEventListener ("click", () => {
+        singleLikeButton.classList.add ("like-button--liked")
+    })
+}
 
 // ! FUNCTIONS ......................................................................
 /**
@@ -124,7 +133,7 @@ function createPost (id, content, media, name, image, likes, created) {
             <div class="post__footer">
                 <div class="likes js-likes">
                     <div class="likes__cta">
-                        <a class="like-button  js-like-button" href="#" data-postid="1">
+                        <a class="like-button js-like-button" href="#n${id}" data-postid="1">
                             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                             <span class="like-button__label">
                                 Mi Piace
