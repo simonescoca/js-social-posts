@@ -90,14 +90,23 @@ posts.forEach ((obj) => {
 })
 
 const likeButtons = document.querySelectorAll ("a.like-button")
+const likeCounters = document.querySelectorAll ("b.js-likes-counter")
+const likedPosts = []
 
-for (let i = 0 ; i < likeButtons.length ; i++) {
+for (let i = 0 ; i < posts.length ; i++) {
     const singleLikeButton = likeButtons[i]
+    const singleLikeCounter = likeCounters[i]
 
     singleLikeButton.addEventListener ("click", () => {
         singleLikeButton.classList.add ("like-button--liked")
+        singleLikeCounter.innerText = posts[i].likes + 1
+
+        const likedPost = posts[i]
+        likedPosts.push (likedPost)
+        console.log (likedPosts)
     })
 }
+
 
 // ! FUNCTIONS ......................................................................
 /**
@@ -142,7 +151,7 @@ function createPost (id, content, media, name, image, likes, created) {
                     </div>
                     <div class="likes__counter">
                         Piace a
-                        <b id="like-counter-1" class="js-likes-counter">
+                        <b id="like-counter-${id}" class="js-likes-counter">
                             ${likes}
                         </b>
                         persone
